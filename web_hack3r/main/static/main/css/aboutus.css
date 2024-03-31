@@ -1,0 +1,19 @@
+.mainBox {
+    padding: 20px 10px 0px;
+    margin: 20px;
+    background-color: #fdfdfd;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px #444;
+    text-align: justify;
+}
+.mainBox div {
+    margin: 10px;
+    padding: 20px;
+    border-bottom: 3px solid #444;
+}
+.mainBox div:last-child {
+    border-bottom: none;
+}
+.mainBox svg {
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}

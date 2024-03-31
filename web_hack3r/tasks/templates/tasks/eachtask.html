@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% block title %}
+{{ task_information.TaskName }}
+{% endblock %}
+
+{% block content %}
+<div class="mainBox row justify-content-center col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-7 mx-auto">
+    <h1>Задача: {{ task_information.TaskName }}</h1>
+    <p>{{ task_information.TaskDescription }}</p>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3 row">
+            <div class="col-sm-10">
+               <input name="flag" type="text" class="form-control" id="exampleFormControlInput" placeholder="web_hack3r{some_flag}">
+            </div>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Подтвердить флаг</button>
+        </div>
+        {% if response != NULL %}
+        <p>{{ response }}</p>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

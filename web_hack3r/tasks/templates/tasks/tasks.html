@@ -1,0 +1,115 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'main/css/tasks.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+              <div class="position-sticky pt-3">
+                  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                      <span>Сложность задач</span>
+                  </h6>
+                  <ul class="nav flex-column">
+                      <li class="nav-item">
+                          <div class="form-check">
+                              <input class="form-check-input select-all-checkbox select-all-difficulties" type="checkbox" value="" id="select-all-difficulties">
+                              <label class="form-check-label" for="select-all-difficulties">Выбрать все</label>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <div class="form-check">
+                              <input class="form-check-input filter-checkbox difficulty" data-difficulty="Easy" type="checkbox" value="" id="CheckEasy">
+                              <label class="form-check-label" for="CheckEasy">Easy</label>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <div class="form-check">
+                              <input class="form-check-input filter-checkbox difficulty" data-difficulty="Medium" type="checkbox" value="" id="CheckMedium">
+                              <label class="form-check-label" for="CheckMedium">Medium</label>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <div class="form-check">
+                              <input class="form-check-input filter-checkbox difficulty" data-difficulty="Hard" type="checkbox" value="" id="CheckHard">
+                              <label class="form-check-label" for="CheckHard">Hard</label>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <div class="form-check">
+                              <input class="form-check-input filter-checkbox difficulty" data-difficulty="Extreme" type="checkbox" value="" id="CheckExtreme">
+                              <label class="form-check-label" for="CheckExtreme">Extreme</label>
+                          </div>
+                      </li>
+                  </ul>
+
+                  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                      <span>Категория задач</span>
+                  </h6>
+                  <ul class="nav flex-column">
+                      <li class="nav-item">
+                          <div class="form-check">
+                              <input class="form-check-input select-all-checkbox select-all-categories" type="checkbox" value="" id="select-all-categories">
+                              <label class="form-check-label" for="select-all-categories">Выбрать все</label>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <div class="form-check">
+                              <input class="form-check-input filter-checkbox category" data-category="Osint" type="checkbox" value="" id="CheckOsint">
+                              <label class="form-check-label" for="CheckOsint">Osint</label>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <div class="form-check">
+                              <input class="form-check-input filter-checkbox category" data-category="Reverse" type="checkbox" value="" id="CheckReverse">
+                              <label class="form-check-label" for="CheckReverse">Reverse</label>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <div class="form-check">
+                              <input class="form-check-input filter-checkbox category" data-category="Web" type="checkbox" value="" id="CheckWeb">
+                              <label class="form-check-label" for="CheckWeb">Web</label>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <div class="form-check">
+                              <input class="form-check-input filter-checkbox category" data-category="Crypto" type="checkbox" value="" id="CheckCrypto">
+                              <label class="form-check-label" for="CheckCrypto">Crypto</label>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <div class="form-check">
+                              <input class="form-check-input filter-checkbox category" data-category="Other" type="checkbox" value="" id="CheckOther">
+                              <label class="form-check-label" for="CheckOther">Other</label>
+                          </div>
+                      </li>
+                  </ul>
+
+              </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <h1>Самые лучшие задачи по CTF</h1>
+            {% for element in view_tasks %}
+            <div class="mainBox task" data-category="{{ element.Task_category }}" data-difficulty="{{ element.Task_difficulty }}">
+                <h3>{{ element.TaskName }}</h3>
+                <p>{{ element.Task_category }}, {{ element.Task_difficulty }}</p>
+                <p>{{ element.TaskDescription }}</p>
+                <a href="{% url 'task-detail' element.id %}" class="btn btn-warning bg-white">Посмотреть</a>
+            </div>
+            {% endfor %}
+        </main>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block sctripts %}
+<script src="{% static 'main/js/task_filter.js' %}"></script>
+{% endblock %}

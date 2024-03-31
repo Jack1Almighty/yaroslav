@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'main/css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="mainBox row justify-content-center col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-7 mx-auto">
+    <form method="POST">
+        {% csrf_token %}
+        {% for f in form %}
+        <div class="mb-3 row justify-content-between">
+            <label class="col-sm-5 col-form-label">{{ f.label }}</label>
+            <div class="col-sm-7">
+                {{ f }}
+            </div>
+        </div>
+        <div class="mb-3 row">{{ f.errors }}</div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary mb-3">Регистрация</button>
+    </form>
+    <p><a class="nav-link" href="{% url 'login' %}"><u>Есть аккаунт? Войти</u></a></p>
+</div>
+{% endblock %}
